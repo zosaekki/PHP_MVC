@@ -15,7 +15,6 @@ abstract class Controller {
         if(strpos($view, "redirect:") === 0) {
             header("Location: http://" . _HOST . substr($view, 9));
         }
-        return _VIEW . "/" . $view;
+        return _VIEW . $view;
     }
 }
-
