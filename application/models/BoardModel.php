@@ -17,8 +17,7 @@
                     FROM t_board A
                     INNER JOIN t_user B
                     ON A.i_user = B.i_user
-                    WHERE A.i_board = :i_board
-                    ";
+                    WHERE A.i_board = :i_board";
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindValue(':i_board', $param["i_board"]);
             $stmt->execute();
@@ -29,6 +28,18 @@
             $sql = "DELETE FROM t_board WHERE i_board = :i_board";
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindValue(':i_board', $param["i_board"]);
+            $stmt->execute();
+        }
+
+        public function updBoard(&$param) {
+            $sql = "UPDATE t_board
+                    SET title = :title,
+                        ctnt = :ctnt
+                    WHERE i_board = :i_board";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindValue(':i_board', $param["i_board"]);
+            $stmt->bindValue(':title', $param["title"]);
+            $stmt->bindValue(':ctnt', $param["ctnt"]);
             $stmt->execute();
         }
     }
