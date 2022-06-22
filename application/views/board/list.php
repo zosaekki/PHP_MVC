@@ -8,6 +8,7 @@
             <tr>
                 <th>번호</th>
                 <th>제목</th>
+                <th>작성자</th>
                 <th>작성일</th>
             </tr>
         </thead>
@@ -16,6 +17,7 @@
                 <tr data-i_board="<?=$item->i_board?>">
                     <td><?=$item->i_board?></td>
                     <td><?=$item->title?></td>
+                    <td><?=$item->nm?></td>
                     <td><?=$item->created_at?></td>
                 </tr>
             <?php } ?>

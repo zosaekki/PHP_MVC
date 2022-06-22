@@ -8,11 +8,12 @@
     define('_CHARSET', 'utf8');
     define("_VIEW", "application/views/");
 
+    define("_TITLE", "title");
     define("_HEADER", "header");
     define("_MAIN", "main");
     define("_FOOTER", "footer");
 
+    define("_LOGINUSER", "loginUser");
+
     define("_CSS", "css");
     define("_JS", "js");
-
-    

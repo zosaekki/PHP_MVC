@@ -3,7 +3,6 @@
 
     btnDel.addEventListener('click', e => {
       if (confirm('삭제하시겠습니까?')); {
-        alert('삭제완료');
         location.href = `del?i_board=${btnDel.dataset.i_board}`;
         }
     });
