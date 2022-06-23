@@ -50,6 +50,25 @@
             $this->addAttribute(_FOOTER, $this->getView("template/footer.php"));
             return "template/t1.php";
         }
+        
+        public function replyProc() {
+            $i_board = $_POST['i_board'];
+            $nm = $_POST['nm'];
+            $uid = $_POST['uid'];
+            $upw = $_POST['upw'];
+            $content = $_POST['content'];
+
+            $param = [
+                'i_board' => $i_board,
+                'nm' => $nm,
+                'uid' => $uid,
+                'upw' => $upw,
+                'content' => $content
+            ];
+            $model = new BoardModel();
+            $model->insReply($param);
+            return "redirect:/board/detail?i_board={$i_board}";
+        }
 
         public function mod() {
             $i_board = $_GET['i_board'];

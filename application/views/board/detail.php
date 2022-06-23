@@ -18,12 +18,21 @@
     <div>글쓴이 : <?=$this->data->nm?></div>
     <!-- <?= print_r ($this)?> -->
     <hr>
-    <h3>댓글</h3>
-    <div>작성자 : <?=$this->reply->nm?></div>
-    <div>내용 : <?=$this->reply->content?></div>
-    <div>작성일 : <?=$this->reply->reply_at?></div>
-    <form action="replyProc">
-        
+    <h3>댓글목록</h3>
+    <?php foreach($this->reply as $item) { ?>
+    <div>작성자 : <?=$item->nm?></div>
+    <div>내용 : <?=$item->content?></div>
+    <div>작성일 : <?=$item->reply_at?></div>
+    <hr>
+    <?php } ?>
+    <h4>댓글작성</h4>
+    <form action="replyProc" method="POST">
+        <input type="hidden" name="i_board" value="<?=$this->data->i_board?>">
+        <input type="hidden" name="nm" value="<?=$_SESSION[_LOGINUSER]->nm?>">
+        <div>
+            <textarea name="content"></textarea>
+            <input type="submit" value="댓글작성">
+        </div>
     </form>
 </body>
 </html>

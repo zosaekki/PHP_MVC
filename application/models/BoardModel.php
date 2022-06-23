@@ -71,6 +71,18 @@
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindValue(':i_board', $param["i_board"]);
             $stmt->execute();
-            return $stmt->fetch(PDO::FETCH_OBJ);
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        }
+
+        public function insReply(&$param) {
+            $sql = "INSERT INTO reply
+                    (i_board, nm, content)
+                    VALUES
+                    (:i_board, :nm, :content)";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindValue(':i_board', $param["i_board"]);
+            $stmt->bindValue(':nm', $param["nm"]);
+            $stmt->bindValue(':content', $param["content"]);
+            $stmt->execute();
         }
     }
