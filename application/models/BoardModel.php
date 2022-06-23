@@ -27,7 +27,7 @@
         }
 
         public function selBoard(&$param) {
-            $sql = "SELECT A.i_board, A.title, A.ctnt, A.created_at, A.updated_at, B.nm
+            $sql = "SELECT A.i_user, A.i_board, A.title, A.ctnt, A.created_at, A.updated_at, B.nm
                     FROM t_board A
                     INNER JOIN t_user B
                     ON A.i_user = B.i_user
@@ -43,8 +43,10 @@
                     SET title = :title,
                         ctnt = :ctnt,
                         updated_at = now()
-                    WHERE i_board = :i_board";
+                    WHERE i_board = :i_board
+                    AND i_user = :i_user";
             $stmt = $this->pdo->prepare($sql);
+            $stmt->bindValue(':i_user', $param["i_user"]);
             $stmt->bindValue(':i_board', $param["i_board"]);
             $stmt->bindValue(':title', $param["title"]);
             $stmt->bindValue(':ctnt', $param["ctnt"]);
@@ -52,10 +54,23 @@
         }
 
         public function delBoard(&$param) {
-            $sql = "DELETE FROM t_board WHERE i_board = :i_board";
+            $sql = "DELETE FROM t_board 
+                    WHERE i_board = :i_board
+                    AND i_user = :i_user";
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindValue(':i_board', $param["i_board"]);
+            $stmt->bindValue(':i_user', $param["i_user"]);
             $stmt->execute();
         }
 
+        public function reply(&$param) {
+            $sql = "SELECT * 
+                    FROM reply
+                    WHERE i_board = :i_board
+                    ";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindValue(':i_board', $param["i_board"]);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_OBJ);
+        }
     }
