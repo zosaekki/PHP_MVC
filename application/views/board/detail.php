@@ -4,7 +4,7 @@
 <?php include_once "application/views/template/head.php"; ?>
 <body>
     <h1>detail</h1>
-    <?php if(($_SESSION[_LOGINUSER]->i_user) === $this->data->i_user) { ?>
+    <?php if(isset(($_SESSION[_LOGINUSER]->i_user)) && $_SESSION[_LOGINUSER]->i_user === $this->data->i_user) { ?>
         <div>
             <button id="btnDel" data-i_board=<?=$this->data->i_board?>>삭제</button>
             <a href="mod?i_board=<?=$this->data->i_board?>"><button>수정</button></a>

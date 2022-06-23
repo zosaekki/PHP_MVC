@@ -28,10 +28,10 @@
 
         public function login() {
             $this->addAttribute(_TITLE, "로그인");
-            $this->addAttribute(_HEADER, $this->getView("template/header.php"));
-            $this->addAttribute(_MAIN, $this->getView("user/login.php"));
-            $this->addAttribute(_FOOTER, $this->getView("template/footer.php"));
-            return "template/t1.php";
+            // $this->addAttribute(_HEADER, $this->getView("template/header.php"));
+            // $this->addAttribute(_MAIN, $this->getView("user/login.php"));
+            // $this->addAttribute(_FOOTER, $this->getView("template/footer.php"));
+            return "user/login.php";
         }
 
         public function loginProc() {
@@ -59,6 +59,5 @@
         public function logout() {
             flash(_LOGINUSER);
             return "redirect:/board/list";
-
         }
     }

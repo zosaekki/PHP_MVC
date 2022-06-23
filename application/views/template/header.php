@@ -6,6 +6,10 @@
     <?php } else { ?>
             <a href="/user/login">로그인</a>
             <a href="/user/join">회원가입</a>
+            <?php print "<script>
+                                alert('로그인 해라')
+                                location.href = '/user/login'
+                        </script>"; ?>
     <?php } ?>
     <a href="/board/list">리스트</a>
 </div>
