@@ -43,7 +43,7 @@
             $param = ["i_board" => $i_board];
             $this->addAttribute(_TITLE, "detail");
             $this->addAttribute("data", $model->selBoard($param));
-            $this->addAttribute("reply", $model->reply($param));
+            $this->addAttribute("reply", $model->selReply($param));
             $this->addAttribute("js", ["board/detail"]);
             $this->addAttribute(_HEADER, $this->getView("template/header.php"));
             $this->addAttribute(_MAIN, $this->getView("board/detail.php"));
@@ -67,6 +67,18 @@
             ];
             $model = new BoardModel();
             $model->insReply($param);
+            return "redirect:/board/detail?i_board={$i_board}";
+        }
+
+        public function delReplyProc() {
+            $i_board = $_POST['i_board'];
+            $reply_num = $_POST['reply_num'];
+            $param = [
+                'i_board' => $i_board,
+                'reply_num' => $reply_num
+            ];
+            $model = new BoardModel();
+            $model->delReply($param);
             return "redirect:/board/detail?i_board={$i_board}";
         }
 
