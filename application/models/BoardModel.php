@@ -63,11 +63,10 @@
             $stmt->execute();
         }
 
-        public function reply(&$param) {
+        public function selReply(&$param) {
             $sql = "SELECT * 
                     FROM reply
-                    WHERE i_board = :i_board
-                    ";
+                    WHERE i_board = :i_board";
             $stmt = $this->pdo->prepare($sql);
             $stmt->bindValue(':i_board', $param["i_board"]);
             $stmt->execute();
@@ -83,6 +82,16 @@
             $stmt->bindValue(':i_board', $param["i_board"]);
             $stmt->bindValue(':nm', $param["nm"]);
             $stmt->bindValue(':content', $param["content"]);
+            $stmt->execute();
+        }
+
+        public function delReply(&$param) {
+            $sql = "DELETE FROM reply
+                    WHERE i_board = :i_board
+                    AND reply_num = :reply_num";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindValue(':i_board', $param["i_board"]);
+            $stmt->bindValue(':reply_num', $param["reply_num"]);
             $stmt->execute();
         }
     }

@@ -23,6 +23,11 @@
     <div>작성자 : <?=$item->nm?></div>
     <div>내용 : <?=$item->content?></div>
     <div>작성일 : <?=$item->reply_at?></div>
+    <form action="delReplyProc" method="POST">
+        <input type="hidden" name="i_board" value="<?=$item->i_board?>">
+        <input type="hidden" name="reply_num" value="<?=$item->reply_num?>">
+        <input type="submit" value="삭제">
+    </form>
     <hr>
     <?php } ?>
     <h4>댓글작성</h4>
